@@ -12,6 +12,7 @@ pipeline{
                     withSonarQubeEnv(credentialsId: 'jenkins-tocken') {
                             sh 'chmod +x gradlew'
                             sh './gradlew sonarqube'
+                            sh 'gradle build --stacktrace'
                     }
                      timeout(time: 1, unit: 'HOURS') {
                       def qg = waitForQualityGate()
